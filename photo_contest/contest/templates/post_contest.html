@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<body class="sub_page">
+{% endblock body %}
+
+{% block content %}
+</div>
+  <!-- team section -->
+  <div class="container">
+    <section class="team_section layout_padding">
+      <div class="container">
+        <div class="heading_container heading_center">
+          <h2>{{ contest.Cname }}</h2>
+          <p>Contest Ending Date: {{ contest.Cdate }}</p>
+          
+          {% if expired %}
+            <p style="color: red;">The contest has ended. You can no longer upload photos.</p>
+            <a href='{% url "winner" contest.id %}'>View the winner of this contest</a><br>
+          {% else %}
+            <form action="#" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div style="display: flex; align-items: center; gap: 10px; width:1000px">
+                <label for="photo">Upload your Photo:</label>
+                <input class="form-control" type="file" name="photo" id="photo" required>
+                <button class="btn btn-dark" type="submit">Upload</button>
+              </div>
+            </form>
+          {% endif %}
+        </div>
+
+        <!-- Photos Section -->
+        <div class="row"> <!-- Add Bootstrap's row here -->
+          {% if photos %}
+            {% for photo in photos %}
+              <div class="col-md-4 mb-4"> <!-- Correct grid for 3 cards per row on medium screens -->
+                <div class="card h-100"> <!-- Full height for consistent card size -->
+                  <img src="{{ photo.image.url }}" class="card-img-top" alt="Photo {{ forloop.counter }}">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ photo.user.username }}</h5>
+                    <p class="card-text">Likes: <span id="like-count-{{ photo.id }}">{{ photo.likes_count }}</span></p>
+                    
+                    {% if expired %}
+                      <p class="text-danger"></p>
+                    {% else %}
+                      {% if photo.id in liked_photos %}
+                        <a class="btn btn-dark" href="{% url 'like_photo' photo.id %}" id="like-button-{{ photo.id }}">Liked</a>
+                      {% else %}
+                        <a class="btn btn-outline-dark" href="{% url 'like_photo' photo.id %}" id="like-button-{{ photo.id }}">Like</a>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <p>No photos uploaded yet for this contest.</p>
+          {% endif %}
+        </div> <!-- End row -->
+      </div>
+    </section>
+
+    <!-- Like Button Script -->
+    <script>
+      document.querySelectorAll('button[id^="like-button"]').forEach(button => {
+        button.addEventListener('click', function() {
+          var photoId = this.getAttribute('data-photo-id');
+          var likeButton = this;
+    
+          fetch(`/photo/${photoId}/like/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json', // Set content type for the request
+              'X-CSRFToken': '{{ csrf_token }}', // Make sure Django's CSRF token is included
+            },
+            body: JSON.stringify({}) // Send an empty JSON body if no additional data is needed
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.likes !== undefined) {
+              document.getElementById('like-count-' + photoId).textContent = data.likes;
+              likeButton.textContent = data.liked ? 'Unlike' : 'Like';
+            }
+          })
+          .catch(error => console.log('Error:', error));
+        });
+      });
+    </script>
+    
+  </div>
+  <!-- end team section -->
+{% endblock content %}

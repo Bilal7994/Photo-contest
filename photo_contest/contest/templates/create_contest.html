@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <!-- contact section -->
+
+  <section class="contact_section layout_padding">
+    <div class="contact_bg_box">
+      <div class="img-box">
+        <img src="{% static 'images/head.jpeg' %}" alt="">
+      </div>
+    </div>
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Create Your contest
+        </h2>
+      </div>
+      <div class="">
+        <div class="row">
+          <div class="col-md-7 mx-auto">
+            <form action="{% url 'add_contest' %}" method='POST'>
+              {% csrf_token %}
+              <div class="contact_form-container">
+                <div>
+                  <div>
+                    <label>Contest Name :</label>
+                    <input type="text" name='cname' placeholder="Contest Name" required/>
+                  </div>
+                  <div>
+                    <label>Ending Date :</label>
+                    <input type="date" name='cdate' placeholder="Ending Date " required/>
+                  </div>
+                  <div class="">
+                    <label>Description :</label>
+                    <input type="text" name='cdescription' placeholder="Description" class="message_input" required/>
+                  </div>
+                  <div class="btn-box ">
+                    <button type="submit">
+                      create
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end contact section -->
+  {% endblock content %}
+ 

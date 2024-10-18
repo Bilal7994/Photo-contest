@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<body class="sub_page">
+{% endblock body %}
+
+{% block content %}
+</div>
+
+<div class="container">
+    <h1 class="winner-header"></h1>
+
+    <div class="winner-details"></div>
+</div>
+
+<!-- client section -->
+
+<section class="client_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>Winners of the Contest</h2>
+        </div>
+        
+        {% if winner_photos %}
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                
+                {% for winner_photo in winner_photos %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="box">
+                        <div class="img-box">
+                            <div class="winner-photo">
+                                <img src="{{ winner_photo.image.url }}" alt="Winning Photo">
+                            </div>
+                        </div>
+                        <div class="detail-box">
+                            <h4>
+                                <p>Uploaded by: <strong>{{ winner_photo.user.username }}</strong></p>
+                            </h4>
+                            <p>Total Likes: <strong>{{ winner_photo.likes_count }}</strong></p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+            <div class="carousel_btn-box">
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        {% else %}
+        <p>No photos available for this contest.</p>
+        {% endif %}
+        
+    </div>
+</section>
+
+<!-- end client section -->
+
+{% endblock content %}

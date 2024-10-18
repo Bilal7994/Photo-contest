@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<body>
+{% endblock body %}
+{% block content %}
+
+
+
+
+    <!-- slider section -->
+    
+<section class=" slider_section ">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="detail-box">
+                <h1>
+                  Photo <br>
+                  <span>
+                    Contest
+                  </span>
+                </h1>
+                <p>
+                  Welcome to the ultimate Photo Contest platform! Submit your best shots, 
+                  compete with others, and showcase your creativity to win exciting prizes.
+                </p>
+                <div class="btn-box">
+                  <a href="{% url 'logout' %}" class="btn-1">Logout</a>
+                  <a href="{% url 'contest' %}" class="btn-2"> Contest </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item ">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="detail-box">
+                <h1>
+                  Photo <br>
+                  <span>
+                    Contest
+                  </span>
+                </h1>
+                <p>
+                  Step into the spotlight with our Photo Contest! Share your best captures, 
+                  compete in diverse challenges, and see how your creativity stacks up. Your next great shot could be the winner
+                </p>
+                <div class="btn-box">
+                  <a href="{% url 'logout' %}" class="btn-1">Logout</a>
+                  <a href="{% url 'contest' %}" class="btn-2"> Contest </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item ">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="detail-box">
+                <h1>
+                  Photo <br>
+                  <span>
+                    Contest
+                  </span>
+                </h1>
+                <p>
+                  Enter the Photo Contest to showcase your talent! Submit your photos, 
+                  participate in exciting contests, and get recognized for your creativity. Let your pictures do the talking!
+                </p>
+                <div class="btn-box">
+                  <a href="{% url 'logout' %}" class="btn-1">Logout</a>
+                  <a href="{% url 'contest' %}" class="btn-2"> Contest </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container idicator_container">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+    </div>
+  </div>
+</section>
+<!-- end slider section -->
+</div>
+
+
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 px-0">
+          <div class="img_container">
+            <div class="img-box">
+              <img src="{% static 'images/about1.jpg' %}" alt="" />
+           </div>
+          </div>
+        </div>
+        <div class="col-md-6 px-0">
+          <div class="detail-box">
+            <div class="heading_container ">
+              <h2>
+                About us
+              </h2>
+            </div>
+            <p>
+              Welcome to Photo Contest, a platform where photographers of all skill levels can showcase 
+              their work and compete in exciting challenges.
+               Our mission is to create a vibrant community that inspires creativity and connects enthusiasts. 
+               Join us today to share your passion for photography and win fantastic prizes!
+            </p>
+            <div class="btn-box">
+              <a href="{% url 'about' %}">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  
+
+  
+
+
+  
+
+{% endblock content %}
+
+
+  

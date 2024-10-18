@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<body class="sub_page">
+{% endblock body %}
+
+{% block content %}
+</div>
+
+
+
+   <!-- contest section -->
+
+   <section class="service_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Contests
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="box ">
+            <div class="detail-box">
+              <h6>
+                ADD CONTEST
+              </h6>
+              <p>
+                You can create and manage photo contests here.
+                 Set themes, upload guidelines, and invite participants to showcase their best work. 
+              </p>
+              <a href="{% url 'create_contest' %}">
+                Create Contests
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+        {% for i in x %}
+        <div class="col-md-4">
+          <div class="box ">
+            <div class="detail-box">
+              <h6>
+                {{i.Cname}}
+              </h6>
+              <p>
+                {{i.Cdescription}}
+              </p>
+              <p>
+                <label>Ending date:</label>
+                {{i.Cdate}}
+              </p>
+              <a href="{% url 'post_contest' i.id %}">
+                participate
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- end contest section -->
+
+  {% endblock content %}

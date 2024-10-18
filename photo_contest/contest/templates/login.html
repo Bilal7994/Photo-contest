@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+
+  <title>Photo contest</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+</head>
+
+
+<body>
+
+
+    <section class="contact_section layout_padding">
+        <div class="contact_bg_box">
+          <div class="img-box">
+            <img src="{% static 'images/about4.png' %}" alt="">
+          </div>
+        </div>
+        <div class="container">
+          {% comment %} <div>
+            <img src="{% static 'images/back.png' %}" alt="">
+          </div> {% endcomment %}
+          <div class="heading_container heading_center">
+            <h2><br><br><br>
+              Login Page
+            </h2>
+          </div>
+          <div class="">
+            <div class="row">
+              <div class="col-md-7 mx-auto">
+                <form method="post" action='{% url "login_save" %}'>
+                  {% csrf_token %}
+                  {% if errors %}
+                  
+                  {% for error in errors.values %}
+                  <br>
+                    <div class="alert alert-danger" role="alert">
+                      {{ error }}
+                    </div>
+                  {% endfor %}
+                  
+                  {% endif %}
+                  <div class="contact_form-container">
+                    <div class='loginbg'>
+                      <div>
+                        <input type="text" placeholder="username" name='uname' />
+                      </div>
+                      <div>
+                        <input type="password" placeholder="password" name='password3' />
+                      </div>
+                      <div class="btn-box ">
+                        
+                          <button type="submit">
+                          LOGIN
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+</body>
+</html>
